@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="utf-8">
+    <title>Manual Duplex Helper</title>
+    <meta name="description" content="A simple page list generator for manual duplex printing, two pages per side of paper">
+    <meta name="author" content="Marcus Mo">
+
+    <style>
+        body {
+            font: 16px/24px monospace, "sans serif";
+        }
+
+        #output code {
+            background-color: rgba(193,188,161,0.5);
+        }
+    </style>
+
+</head>
+<body>
+
+    Need to manually duplex print like this?
+    <pre><code>      Front       Back
+     ___ ___    ___ ___
+    |   |   |  |   |   |
+    | 1 | 2 |  | 3 | 4 |   Sheet 1
+    |___|___|  |___|___|
+     ___ ___    ___ ___
+    |   |   |  |   |   |
+    | 5 | 6 |  | 7 | 8 |   Sheet 2
+    |___|___|  |___|___|
+
+            ...
+    </code></pre>
+
+    <div id="input">
+        Enter the number of pages: <input id="pages" name="pages" value="10" /> <button>Submit</button>
+    </div>
+    <div id="output">
+        <p>Print these pages first: <code id="first"></code></p>
+        <p>Then print these pages: <code id="second"></code></p>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script>
+
+        var first, second, i, j;
+
+        function writePages(max) {
+
+            first  = "";
+            second = "";
+
+            for( i = 1; i <= max; i += 4 ) {
+
+                j = [i,i+1,i+2,i+3];
+
+                if( j[0] <= max ) first  += j[0] + ",";
+                if( j[1] <= max ) first  += j[1] + ",";
+                if( j[2] <= max ) second += j[2] + ",";
+                if( j[3] <= max ) second += j[3] + ",";
+                
+            }
+
+            first  = first.slice(0,-1);
+            second = second.slice(0,-1);
+
+        }
+
+        // Add listener
+        $("button").on('click', function() {
+
+            writePages( $("#pages").val() );
+
+            // Output result
+            $("#first").html(first);
+            $("#second").html(second);
+
+            // Show output
+            $("#output").show();
+
+        });
+
+        // Hide output
+        $("#output").hide();
+
+    </script>
+
+</body>
+</html>
