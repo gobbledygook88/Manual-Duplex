@@ -34,7 +34,12 @@
     </code></pre>
 
     <div id="input">
-        Enter the number of pages: <input id="pages" name="pages" value="10" /> <button>Submit</button>
+        <form>
+            <p><label>Enter the number of pages:</label> <input id="pages" name="pages" value="10" /></p>
+            <p><label>Starting from page:</label> <input id="start" name="start" value="1" /></p>
+            <button>Submit</button>
+        </form>
+        
     </div>
     <div id="output">
         <p>Print these pages first: <code id="first"></code></p>
@@ -46,12 +51,12 @@
 
         var first, second, i, j;
 
-        function writePages(max) {
+        function writePages( max, start ) {
 
             first  = "";
             second = "";
 
-            for( i = 1; i <= max; i += 4 ) {
+            for( i = start; i <= max; i += 4 ) {
 
                 j = [i,i+1,i+2,i+3];
 
@@ -70,7 +75,7 @@
         // Add listener
         $("button").on('click', function() {
 
-            writePages( $("#pages").val() );
+            writePages( $("#pages").val(), $("#start").val() );
 
             // Output result
             $("#first").html(first);
