@@ -73,7 +73,7 @@
         }
 
         // Add listener
-        $("button").on('click', function() {
+        $("button").on('click', function( e ) {
 
             writePages( $("#pages").val(), $("#start").val() );
 
@@ -85,7 +85,11 @@
             $("#output").show();
 
             // Prevent default action
-            return false;
+            if( e.preventDefault() ) {
+                e.preventDefault();
+            } else {
+                return false;
+            }
 
         });
 
