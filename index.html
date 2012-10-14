@@ -56,14 +56,14 @@
             first  = "";
             second = "";
 
-            for( i = start; i <= max; i += 4 ) {
+            for( i = start; i <= start + max - 1; i += 4 ) {
 
                 j = [i,i+1,i+2,i+3];
 
-                if( j[0] <= max ) first  += j[0] + ",";
-                if( j[1] <= max ) first  += j[1] + ",";
-                if( j[2] <= max ) second += j[2] + ",";
-                if( j[3] <= max ) second += j[3] + ",";
+                if( j[0] <= start + max - 1 ) first  += j[0] + ",";
+                if( j[1] <= start + max - 1 ) first  += j[1] + ",";
+                if( j[2] <= start + max - 1 ) second += j[2] + ",";
+                if( j[3] <= start + max - 1 ) second += j[3] + ",";
                 
             }
 
