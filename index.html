@@ -75,7 +75,7 @@
         // Add listener
         $("button").on('click', function( e ) {
 
-            writePages( $("#pages").val().toInteger(), $("#start").val().toInteger() );
+            writePages( parseInt( $("#pages").val() ), parseInt( $("#start").val() ) );
 
             // Output result
             $("#first").html(first);
